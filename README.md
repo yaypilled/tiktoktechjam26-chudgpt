@@ -1,8 +1,13 @@
 TechJam 2026 — Conversational E-Commerce Search Agent (Track #4) by Chudgpt
+
 Project Overview
+
 This project is our submission for Track #4: E-Commerce AI Conversational Search Result Recommendation at TikTok TechJam 2026.
+
 The challenge: build an AI shopping agent that, through a multi-turn conversation, figures out what a customer is looking for and returns the correct hidden target product — ranked as early and as highly as possible — within a maximum of 10 turns, across four customer behavior types (Buying, Browsing, Intent Override, Boundary).
+
 Our solution is a stateful BM25 retrieval agent built on SQLite's FTS5 full-text search engine. Rather than treating each turn as an isolated search query, the agent accumulates information across the whole conversation, actively asks clarifying questions to draw out more detail from the customer, and filters results against extracted budget constraints.
+
 Final result on the 200-session public set:
 Metric	Weak baseline (provided) vs	Our final agent
 Hit Rate@10	12.5% vs 84.5%
@@ -10,6 +15,7 @@ MRR	0.068 vs 0.515
 MTTC	9.81 vs 4.57
 Technical Score	0.107	0.705
 This is a ~6.5x improvement over the provided weak starter, achieved with a fully rule-based pipeline — no external LLM calls, no API costs, and no dependency that could fail or rate-limit during judging.
+
 ---
 How Our Solution Addresses the Problem Statement
 The problem statement asks for an agent that turns a vague request into a useful search plan through gradual, multi-turn disclosure (category → use case → material → style → budget), and that handles four distinct customer behaviors. Our design maps directly onto this:
